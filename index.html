@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Keyframe Studio — Montage Reels & Shorts pour créateurs Tech, SaaS & IA</title>
+<meta name="description" content="Montage vidéo short-form pour créateurs tech, SaaS et IA. Reels, TikTok, Shorts : de brut à mémorable. Diagnostic + version test 15s gratuit.">
+<meta property="og:title" content="Keyframe Studio — Montage short-form pour créateurs Tech, SaaS & IA">
+<meta property="og:description" content="Reels, Shorts et TikTok qui transforment ton contenu tech en arrêts sur scroll.">
+<meta property="og:type" content="website">
+<link rel="icon" href="https://keyframestudioo.github.io/keyframestudio/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:#0B0B0C; --bg-2:#0F0F11; --surface:#151517; --surface-2:#1B1B1F;
+    --line:rgba(255,255,255,.09); --line-strong:rgba(255,255,255,.16);
+    --text:#F4F4F1; --muted:#9C9C98; --muted-2:#76766F;
+    --accent:#2DE0EE; --accent-2:#FF3D4D;
+    --accent-dim:rgba(45,224,238,.13); --accent-glow:rgba(45,224,238,.32);
+    --grad:linear-gradient(100deg,var(--accent),var(--accent-2));
+    --radius:18px; --maxw:1180px; --ease:cubic-bezier(.22,.61,.36,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:"DM Sans",sans-serif;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;position:relative}
+  body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+    background:radial-gradient(60vw 60vw at 80% -10%, rgba(45,224,238,.12), transparent 60%),radial-gradient(46vw 46vw at -8% 28%, rgba(255,61,77,.07), transparent 60%)}
+  body::after{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.05;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .wrap{position:relative;z-index:1}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .container{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 24px}
+
+  h1,h2{font-family:"Bebas Neue",sans-serif;font-weight:400;line-height:.95;letter-spacing:.01em}
+  h3{font-family:"DM Sans",sans-serif;font-weight:700;line-height:1.15;letter-spacing:-.01em}
+  .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+
+  .eyebrow{font-family:"DM Sans",sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);display:inline-block}
+  .btn{display:inline-flex;align-items:center;gap:10px;font-family:"DM Sans",sans-serif;font-weight:700;font-size:1rem;padding:15px 26px;border-radius:999px;overflow:hidden;cursor:pointer;border:1px solid transparent;transition:transform .35s var(--ease),border-color .3s,color .3s;position:relative;isolation:isolate;transform:translateZ(0)}
+  .btn-primary{background:transparent;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.22);border-color:rgba(255,255,255,.12);box-shadow:inset 0 0 0 1px rgba(255,255,255,.08),0 0 0 1px rgba(0,0,0,.18)}
+  .btn-primary::before{content:"";position:absolute;inset:-1px;border-radius:inherit;background:var(--grad);z-index:-1}
+  .btn-primary:hover{transform:translateY(-3px) translateZ(0);box-shadow:inset 0 0 0 1px rgba(255,255,255,.10),0 14px 40px -12px var(--accent-glow)}
+  .btn-ghost{background:transparent;color:var(--text);border-color:var(--line-strong)}
+  .btn-ghost:hover{transform:translateY(-3px);border-color:var(--accent);color:var(--accent)}
+  .btn svg{width:17px;height:17px}
+
+  /* HEADER */
+  header{position:sticky;top:0;z-index:50;backdrop-filter:saturate(140%) blur(14px);background:rgba(11,11,12,.6);border-bottom:1px solid transparent;transition:border-color .3s,background .3s}
+  header.scrolled{border-bottom-color:var(--line);background:rgba(11,11,12,.82)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:74px}
+  .brand{display:flex;align-items:center;gap:11px;font-family:"DM Sans",sans-serif;font-weight:700;letter-spacing:.02em;font-size:1.05rem}
+  .brand img{width:30px;height:30px;border-radius:7px}
+  .brand span b{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+  .nav-links{display:flex;align-items:center;gap:34px}
+  .nav-links a{font-size:.96rem;color:var(--muted);font-weight:500;transition:color .25s}
+  .nav-links a:hover{color:var(--text)}
+  .nav-cta{display:flex;align-items:center;gap:16px}
+  .menu-btn{display:none;background:none;border:1px solid var(--line-strong);border-radius:10px;width:42px;height:42px;cursor:pointer;color:var(--text)}
+  .menu-btn svg{width:20px;height:20px;margin:auto}
+
+  /* HERO (centré) */
+  .hero{padding:clamp(4.5rem,11vw,8.5rem) 0 clamp(3.5rem,7vw,5.5rem);text-align:center}
+  .hero-eyebrow{margin-bottom:26px}
+  .hero h1{font-size:clamp(3.2rem,11vw,7rem);max-width:16ch;margin:0 auto;line-height:.92;letter-spacing:.015em}
+  .hero p.lead{margin:28px auto 0;font-size:clamp(1.05rem,2.3vw,1.3rem);color:var(--muted);max-width:46ch;line-height:1.55}
+  .hero-actions{margin-top:40px;display:flex;flex-wrap:wrap;gap:16px;justify-content:center}
+
+  /* MARQUEE */
+  .marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:18px 0;overflow:hidden;white-space:nowrap;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+  .marquee-track{display:inline-block;animation:scroll 26s linear infinite}
+  .marquee-track span{font-family:"DM Sans",sans-serif;font-weight:600;font-size:1rem;letter-spacing:.12em;color:var(--muted-2);text-transform:uppercase;margin:0 26px}
+  .marquee-track span i{color:var(--accent);font-style:normal;margin-left:52px}
+  @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* SECTION */
+  section.block{padding:clamp(4.5rem,10vw,8rem) 0}
+  .sec-head{max-width:62ch;margin:0 auto clamp(2.5rem,5vw,3.8rem);text-align:center}
+  .sec-head h2{font-size:clamp(2.4rem,6vw,4.2rem);margin-top:16px;line-height:.98}
+  .sec-head p.sub{margin:16px auto 0;color:var(--muted);font-size:1.08rem;max-width:52ch}
+
+  /* SHOWREEL */
+  .reel-grid{display:grid;grid-template-columns:repeat(3,minmax(0,260px));gap:20px;justify-content:center;align-items:stretch}
+  .reel-card{position:relative;display:flex;flex-direction:column;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);background:var(--surface);transition:transform .4s var(--ease),border-color .4s}
+  .reel-card:hover{transform:translateY(-6px);border-color:var(--line-strong)}
+  .reel{position:relative;aspect-ratio:9/16;background:#000;flex:1 1 auto}
+  .reel iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .reel-poster{background-size:cover;background-position:center;cursor:pointer;display:flex;align-items:center;justify-content:center}
+  .reel-poster::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.12);transition:background .3s}
+  .reel-poster:hover::after{background:rgba(0,0,0,0)}
+  .play-btn{position:relative;z-index:1;width:66px;height:66px;border-radius:50%;background:var(--grad);color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 34px -8px var(--accent-glow);transition:transform .35s var(--ease)}
+  .play-btn svg{width:26px;height:26px;margin-left:3px}
+  .reel-poster:hover .play-btn{transform:scale(1.1)}
+  .reel-label{display:flex;align-items:center;justify-content:space-between;min-height:50px;padding:14px 18px;font-size:.9rem;color:var(--muted);font-weight:600}
+  .reel-label b{color:var(--text);font-weight:700}
+  .reel-num{font-family:"Bebas Neue",sans-serif;color:var(--accent);font-weight:400;font-size:1.15rem;letter-spacing:.04em}
+  .reel-slot{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;min-height:512px;border:1.5px dashed var(--line-strong);border-radius:var(--radius);background:linear-gradient(180deg,var(--surface),var(--bg-2));color:var(--muted-2);text-align:center;padding:20px;transition:border-color .35s,color .35s,transform .4s var(--ease)}
+  .reel-slot:hover{border-color:var(--accent);color:var(--muted);transform:translateY(-6px)}
+  .reel-slot .plus{width:52px;height:52px;border-radius:50%;border:1.5px solid currentColor;display:flex;align-items:center;justify-content:center;font-size:1.7rem;font-weight:300}
+  .reel-slot small{font-size:.82rem;max-width:18ch;line-height:1.4}
+  .reel-slot strong{font-family:"DM Sans",sans-serif;font-weight:700;font-size:1rem;color:var(--muted)}
+
+  /* CORRECTIONS */
+  .corr-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  .corr{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:30px 30px 32px;transition:transform .4s var(--ease),border-color .4s,background .4s}
+  .corr:hover{transform:translateY(-5px);border-color:var(--line-strong);background:var(--surface-2)}
+  .corr-top{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:18px}
+  .tag{font-size:.82rem;font-weight:600;padding:6px 13px;border-radius:999px}
+  .tag.bad{background:rgba(255,255,255,.05);color:var(--muted-2);text-decoration:line-through;text-decoration-color:rgba(255,255,255,.25)}
+  .arrow{color:var(--accent-2);font-weight:800}
+  .tag.good{background:var(--accent-dim);color:var(--accent)}
+  .corr h3{font-size:1.3rem;margin-bottom:10px}
+  .corr p{color:var(--muted);font-size:1rem}
+
+  /* STATS */
+  .stats-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);overflow:hidden}
+  .stat{padding:38px 26px;text-align:center;border-right:1px solid var(--line)}
+  .stat:last-child{border-right:none}
+  .stat .num{font-family:"Bebas Neue",sans-serif;font-weight:400;font-size:clamp(2.8rem,6.5vw,4rem);line-height:1;letter-spacing:.01em;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+  .stat .lab{margin-top:10px;color:var(--muted);font-size:.95rem;font-weight:500}
+
+  /* AVIS */
+  .avis-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .avis{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:30px;display:flex;flex-direction:column;gap:18px;transition:transform .4s var(--ease),border-color .4s}
+  .avis:hover{transform:translateY(-5px);border-color:var(--line-strong)}
+  .stars{color:var(--accent);letter-spacing:3px;font-size:1.05rem}
+  .avis blockquote{color:var(--text);font-size:1.05rem;line-height:1.55;font-weight:500}
+  .avis .who{display:flex;align-items:center;gap:13px;margin-top:auto;padding-top:6px}
+  .avis .av{width:42px;height:42px;border-radius:50%;background:var(--surface-2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-family:"DM Sans",sans-serif;font-weight:700;color:var(--muted)}
+  .avis .who .meta b{display:block;font-size:.96rem}
+  .avis .who .meta small{color:var(--muted-2);font-size:.85rem}
+  .avis.placeholder blockquote{color:var(--muted-2);font-style:italic}
+
+  /* PROCESS */
+  .proc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .proc{position:relative;padding-top:28px;border-top:2px solid var(--line)}
+  .proc .pnum{font-family:"Bebas Neue",sans-serif;font-weight:400;font-size:3.4rem;line-height:1;letter-spacing:.02em;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+  .proc h3{font-size:1.32rem;margin:14px 0 12px}
+  .proc p{color:var(--muted);font-size:1rem}
+
+  /* CONTACT */
+  .contact{position:relative;border:1px solid var(--line);border-radius:28px;background:radial-gradient(70% 120% at 35% -20%, rgba(45,224,238,.13), transparent 60%),radial-gradient(60% 120% at 82% 120%, rgba(255,61,77,.08), transparent 60%),var(--surface);padding:clamp(3rem,7vw,5.5rem) clamp(1.5rem,5vw,4rem);text-align:center;overflow:hidden}
+  .contact h2{font-size:clamp(2.4rem,6vw,4rem);max-width:20ch;margin:16px auto 0;line-height:.98}
+  .contact p{color:var(--muted);max-width:48ch;margin:18px auto 0;font-size:1.08rem}
+  .contact-actions{margin-top:36px;display:flex;flex-wrap:wrap;gap:16px;justify-content:center}
+
+  /* FORMULAIRE RUSH */
+  .rush-form{max-width:620px;margin:38px auto 0;text-align:left;display:grid;gap:16px}
+  .rf-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .rf-field{display:grid;gap:7px}
+  .rf-field label{font-size:.88rem;font-weight:600;color:var(--text);letter-spacing:.01em}
+  .rf-field label span{color:var(--muted-2);font-weight:400;font-size:.82rem}
+  .rf-field input,.rf-field textarea{width:100%;background:rgba(0,0,0,.35);border:1px solid var(--line-strong);border-radius:12px;color:var(--text);font-family:"DM Sans",sans-serif;font-size:1rem;padding:13px 15px;transition:border-color .25s,box-shadow .25s;resize:vertical}
+  .rf-field input::placeholder,.rf-field textarea::placeholder{color:var(--muted-2)}
+  .rf-field input:focus,.rf-field textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-dim)}
+  .rf-submit{justify-self:center;margin-top:6px}
+  .rf-submit[disabled]{opacity:.6;pointer-events:none}
+  .rf-status{text-align:center;font-size:.95rem;min-height:1.4em;margin:0}
+  .rf-status.ok{color:#4ade80}
+  .rf-status.err{color:var(--accent-2)}
+  .rf-alt{margin-top:26px;align-items:center}
+  .rf-alt-label{color:var(--muted-2);font-size:.9rem;font-weight:500}
+  @media (max-width:680px){.rf-row{grid-template-columns:1fr}}
+
+  /* FOOTER */
+  footer{border-top:1px solid var(--line);padding:54px 0 40px;margin-top:clamp(4rem,9vw,7rem)}
+  .foot{display:flex;flex-wrap:wrap;gap:28px;justify-content:space-between;align-items:flex-start}
+  .foot .brand img{width:34px;height:34px}
+  .foot-tag{color:var(--muted-2);font-size:.92rem;margin-top:14px;max-width:34ch}
+  .foot-links{display:flex;flex-direction:column;gap:11px}
+  .foot-links a{color:var(--muted);font-size:.95rem;transition:color .25s}
+  .foot-links a:hover{color:var(--accent)}
+  .foot-bottom{margin-top:42px;padding-top:24px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;color:var(--muted-2);font-size:.85rem}
+
+  /* REVEAL */
+  .reveal{opacity:0;transition:opacity .6s var(--ease)}
+  .reveal.in{opacity:1}
+
+  /* RESPONSIVE */
+  @media (max-width:900px){
+    .reel-grid,.avis-grid,.proc-grid{grid-template-columns:repeat(2,1fr)}
+    .stats-bar{grid-template-columns:repeat(2,1fr)}
+    .stat:nth-child(2){border-right:none}
+    .stat:nth-child(1),.stat:nth-child(2){border-bottom:1px solid var(--line)}
+  }
+  @media (max-width:680px){
+    .nav-links{position:fixed;inset:74px 0 auto 0;flex-direction:column;align-items:flex-start;gap:0;background:var(--bg-2);border-bottom:1px solid var(--line);padding:8px 24px 22px;transform:translateY(-130%);transition:transform .4s var(--ease);height:auto}
+    .nav-links.open{transform:none}
+    .nav-links a{width:100%;padding:15px 0;border-bottom:1px solid var(--line);font-size:1.05rem;color:var(--text)}
+    .nav-cta .btn{display:none}
+    .menu-btn{display:flex}
+    .corr-grid,.reel-grid,.avis-grid,.proc-grid{grid-template-columns:1fr}
+    .stats-bar{grid-template-columns:1fr}
+    .stat{border-right:none;border-bottom:1px solid var(--line)}
+    .stat:last-child{border-bottom:none}
+    .hero h1{font-size:clamp(2.9rem,14vw,4.2rem)}
+  }
+  /* SHOWREEL — correction mise en page uniquement */
+  @media (max-width:900px){
+    .reel-grid{grid-template-columns:repeat(2,minmax(0,260px));justify-content:center}
+  }
+  @media (max-width:680px){
+    .reel-grid{grid-template-columns:minmax(0,320px);justify-content:center}
+    .reel-slot{min-height:620px}
+  }
+
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header id="top">
+    <div class="container nav">
+      <a href="#top" class="brand">
+        <img src="https://keyframestudioo.github.io/keyframestudio/logo.png" alt="Keyframe Studio">
+        <span>KEYFRAME<b>STUDIO</b></span>
+      </a>
+      <nav class="nav-links" id="navlinks">
+        <a href="#showreel">Showreel</a>
+        <a href="#methode">Méthode</a>
+        <a href="#avis">Avis</a>
+        <a href="#process">Process</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="nav-cta">
+        <a href="#contact" class="btn btn-primary">Envoyer un rush</a>
+        <button class="menu-btn" id="menuBtn" aria-label="Menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-eyebrow eyebrow reveal">Montage short-form · Créateurs Tech, SaaS &amp; IA</div>
+      <h1 class="reveal">Une vidéo ne se<br>regarde pas.<br><span class="grad">Elle se ressent.</span></h1>
+      <p class="lead reveal">Reels, Shorts et TikTok qui transforment ton contenu tech en arrêts sur scroll. De brut à mémorable — sans que tu touches à la timeline.</p>
+      <div class="hero-actions reveal">
+        <a href="#contact" class="btn btn-primary">Envoyer un rush
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="#showreel" class="btn btn-ghost">Voir le showreel</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee">
+    <div class="marquee-track">
+      <span>Contenu Tech<i>◆</i></span><span>SaaS<i>◆</i></span><span>Intelligence Artificielle<i>◆</i></span><span>Podcast<i>◆</i></span><span>Startup<i>◆</i></span><span>Dev &amp; No-code<i>◆</i></span><span>Reels &amp; Shorts<i>◆</i></span>
+      <span>Contenu Tech<i>◆</i></span><span>SaaS<i>◆</i></span><span>Intelligence Artificielle<i>◆</i></span><span>Podcast<i>◆</i></span><span>Startup<i>◆</i></span><span>Dev &amp; No-code<i>◆</i></span><span>Reels &amp; Shorts<i>◆</i></span>
+    </div>
+  </div>
+
+  <section class="block" id="showreel">
+    <div class="container">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Showreel</span>
+        <h2>De brut à mémorable.</h2>
+        <p class="sub">Quelques montages récents. Pour le reste, envoie un rush — la version test parle mieux que n'importe quel argument.</p>
+      </div>
+      <div class="reel-grid">
+        <div class="reel-card reveal">
+          <div class="reel reel-poster" data-yt="AuP3BcmvQsc" style="background-image:url('miniature_showreel.png')" role="button" tabindex="0" aria-label="Lire le showreel">
+            <span class="play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></span>
+          </div>
+          <div class="reel-label"><b>Le meilleur de 40+ vidéos</b><span class="reel-num">01</span></div>
+        </div>
+        <div class="reel-card reveal">
+          <div class="reel reel-poster" data-yt="vc7UJrXhzmA" style="background-image:url('v2.png')" role="button" tabindex="0" aria-label="Lire la vidéo avant / après">
+            <span class="play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></span>
+          </div>
+          <div class="reel-label"><b>Compréhensible sans le son</b><span class="reel-num">02</span></div>
+        </div>
+        <!-- ═══ POUR AJOUTER UNE VIDÉO (au fur et à mesure) : colle ce bloc avant ce commentaire.
+             Remplace TON_ID (ce qui suit youtube.com/shorts/ ou watch?v=), TON_IMAGE.png (vignette 9:16 uploadée dans le repo, à côté d'index.html), le Titre, et incrémente le numéro :
+             <div class="reel-card reveal">
+               <div class="reel reel-poster" data-yt="TON_ID" style="background-image:url('TON_IMAGE.png')" role="button" tabindex="0" aria-label="Lire la vidéo">
+                 <span class="play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></span>
+               </div>
+               <div class="reel-label"><b>Titre</b><span class="reel-num">03</span></div>
+             </div>
+        ═══ -->
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="methode" style="background:var(--bg-2)">
+    <div class="container">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Ce que je corrige</span>
+        <h2>Tes rushs ont du potentiel. Il leur manque une direction.</h2>
+      </div>
+      <div class="corr-grid">
+        <div class="corr reveal">
+          <div class="corr-top"><span class="tag bad">Rythme plat</span><span class="arrow">→</span><span class="tag good">Chaque cut a une intention</span></div>
+          <h3>Un rythme qui tient</h3>
+          <p>Un montage sans rythme perd le spectateur en 2 secondes. Je structure chaque plan pour garder l'attention du début à la fin.</p>
+        </div>
+        <div class="corr reveal">
+          <div class="corr-top"><span class="tag bad">Son brut</span><span class="arrow">→</span><span class="tag good">Audio propre &amp; calé</span></div>
+          <h3>Un son net, jamais gênant</h3>
+          <p>Nettoyage, niveaux équilibrés et musique synchronisée sur les temps forts. Un audio propre qui sert l'image au lieu de distraire.</p>
+        </div>
+        <div class="corr reveal">
+          <div class="corr-top"><span class="tag bad">Image plate</span><span class="arrow">→</span><span class="tag good">Couleurs &amp; sous-titres qui claquent</span></div>
+          <h3>Une identité visuelle cohérente</h3>
+          <p>Colorimétrie homogène et sous-titres animés lisibles, calés sur ta charte — pas un template générique recyclé.</p>
+        </div>
+        <div class="corr reveal">
+          <div class="corr-top"><span class="tag bad">Pas de hook</span><span class="arrow">→</span><span class="tag good">3 secondes qui captent</span></div>
+          <h3>Une accroche qui stoppe le scroll</h3>
+          <p>Les algorithmes décident en 3 secondes. Je construis des accroches qui cassent le scroll et gardent le viewer jusqu'au bout.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" style="padding-top:0">
+    <div class="container">
+      <div class="stats-bar reveal">
+        <div class="stat"><div class="num">40+</div><div class="lab">vidéos montées</div></div>
+        <div class="stat"><div class="num">15s</div><div class="lab">test offert avant engagement</div></div>
+        <div class="stat"><div class="num">2</div><div class="lab">révisions incluses</div></div>
+        <div class="stat"><div class="num">&lt;24h</div><div class="lab">délai de réponse</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="avis" style="background:var(--bg-2)">
+    <div class="container">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Avis</span>
+        <h2>Ce qu'en disent les clients.</h2>
+        <p class="sub">Les retours de ceux qui m'ont confié leurs rushs.</p>
+      </div>
+      <div class="avis-grid" >
+        <div class="avis reveal">
+          <div class="stars">★★★★★</div>
+          <blockquote>« J'ai fait appel à Mustafa pour une longue vidéo et des réels, il a su s'adapter à ma DA et mettre sa créativité dans chacune des vidéos. Un monteur qui est à l'écoute et vers l'optimisation ! »</blockquote>
+          <div class="who"><div class="av">M</div><div class="meta"><b>Maureen</b><small>Créatrice de contenu</small></div></div>
+        </div>
+        <div class="avis reveal">
+          <div class="stars">★★★★★</div>
+          <blockquote>« On lui confie les Reels de Most Amazing Places depuis plusieurs vidéos : montages rythmés, formats calés pour Instagram, et des délais toujours tenus. On envoie les rushs, on reçoit du prêt-à-publier. »</blockquote>
+          <div class="who"><div class="av">P</div><div class="meta"><b>Pelin</b><small>Most Amazing Places</small></div></div>
+        </div>
+        <div class="avis reveal">
+          <div class="stars">★★★★★</div>
+          <blockquote>« On lui a confié le montage d'un Reel pour une de nos créatrices : rendu propre, rythmé, exactement dans la DA demandée, et livré sans qu'on ait besoin de repasser derrière. »</blockquote>
+          <div class="who"><div class="av">E</div><div class="meta"><b>Evan</b><small>CAO EVAN</small></div></div>
+        </div>
+        <!-- 3e AVIS : quand tu le reçois, colle ce bloc avant ce commentaire, adapte texte/initiale/prénom/rôle,
+             et remplace repeat(2,minmax(0,440px)) par repeat(3,1fr) dans la ligne avis-grid ci-dessus :
+        <div class="avis reveal">
+          <div class="stars">★★★★★</div>
+          <blockquote>« Texte de l'avis. »</blockquote>
+          <div class="who"><div class="av">X</div><div class="meta"><b>Prénom</b><small>Rôle</small></div></div>
+        </div>
+        -->
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="process">
+    <div class="container">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Process</span>
+        <h2>3 étapes. C'est tout.</h2>
+      </div>
+      <div class="proc-grid">
+        <div class="proc reveal"><div class="pnum">01</div><h3>Envoie tes rushs</h3><p>Ton fichier brut + un brief rapide : objectif, ton souhaité, deadline. Je m'occupe du reste.</p></div>
+        <div class="proc reveal"><div class="pnum">02</div><h3>Diagnostic + test 15s gratuit</h3><p>Je te renvoie un retour honnête et une version test de 15 secondes. Tu vois le résultat avant de t'engager.</p></div>
+        <div class="proc reveal"><div class="pnum">03</div><h3>Montage complet livré</h3><p>Montage final, 2 révisions incluses, formats optimisés pour chaque plateforme. Prêt à publier.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="contact" style="padding-bottom:0">
+    <div class="container">
+      <div class="contact reveal">
+        <span class="eyebrow">Contact</span>
+        <h2>Envoie un rush. Diagnostic + test 15s gratuit.</h2>
+        <p>Pas de devis à rallonge : colle un lien vers ton rush, je te renvoie un retour honnête et une version test de 15 secondes sous 24h. Tu décides après avoir vu.</p>
+
+        <form id="rushForm" class="rush-form" novalidate>
+          <div class="rf-row">
+            <div class="rf-field">
+              <label for="rf-name">Ton prénom / chaîne</label>
+              <input id="rf-name" name="Prénom ou chaîne" type="text" placeholder="Ex. Thomas — @tomtech" required>
+            </div>
+            <div class="rf-field">
+              <label for="rf-email">Ton email</label>
+              <input id="rf-email" name="Email" type="email" placeholder="toi@exemple.com" required>
+            </div>
+          </div>
+          <div class="rf-field">
+            <label for="rf-link">Lien vers ton rush <span>(Drive, WeTransfer, SwissTransfer, ou lien d'une vidéo déjà en ligne)</span></label>
+            <input id="rf-link" name="Lien du rush" type="url" placeholder="https://…" required>
+          </div>
+          <div class="rf-field">
+            <label for="rf-brief">Brief express <span>(objectif, ton souhaité, deadline — 2 lignes suffisent)</span></label>
+            <textarea id="rf-brief" name="Brief" rows="3" placeholder="Ex. Reel pour promouvoir mon SaaS, ton dynamique, deadline souple."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary rf-submit">Recevoir mon test 15s gratuit
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+          <p class="rf-status" id="rfStatus" role="status" aria-live="polite"></p>
+        </form>
+
+        <div class="contact-actions rf-alt">
+          <span class="rf-alt-label">Ou en direct :</span>
+          <a href="mailto:keyframestudio.contact@gmail.com?subject=Test%2015s%20gratuit%20—%20mon%20rush&body=Pr%C3%A9nom%20%2F%20cha%C3%AEne%20%3A%0ALien%20du%20rush%20(Drive%2FWeTransfer)%20%3A%0AObjectif%20%2B%20deadline%20%3A" class="btn btn-ghost">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="3 7 12 13 21 7"/></svg>
+            Par email
+          </a>
+          <a href="https://www.instagram.com/keyframestudio_pro/" target="_blank" rel="noopener" class="btn btn-ghost">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+            DM Instagram
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="foot">
+        <div>
+          <a href="#top" class="brand"><img src="https://keyframestudioo.github.io/keyframestudio/logo.png" alt="Keyframe Studio"><span>KEYFRAME<b>STUDIO</b></span></a>
+          <p class="foot-tag">Montage short-form pour créateurs Tech, SaaS &amp; IA — France.</p>
+        </div>
+        <div class="foot-links">
+          <a href="#showreel">Showreel</a><a href="#methode">Méthode</a><a href="#avis">Avis</a><a href="#process">Process</a><a href="#contact">Contact</a>
+        </div>
+        <div class="foot-links">
+          <a href="mailto:keyframestudio.contact@gmail.com">keyframestudio.contact@gmail.com</a>
+          <a href="https://www.instagram.com/keyframestudio_pro/" target="_blank" rel="noopener">@keyframestudio_pro</a>
+        </div>
+      </div>
+      <div class="foot-bottom"><span>© 2026 Keyframe Studio. Tous droits réservés.</span><span>Reels · Shorts · TikTok</span></div>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  var header = document.getElementById('top');
+  window.addEventListener('scroll', function(){
+    if(window.scrollY > 10){ header.classList.add('scrolled'); } else { header.classList.remove('scrolled'); }
+  }, {passive:true});
+
+  var menuBtn = document.getElementById('menuBtn');
+  var navlinks = document.getElementById('navlinks');
+  if(menuBtn && navlinks){
+    menuBtn.addEventListener('click', function(){ navlinks.classList.toggle('open'); });
+    navlinks.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ navlinks.classList.remove('open'); }); });
+  }
+
+  /* Formulaire "Envoyer un rush" — envoi via FormSubmit (aucun serveur requis).
+     IMPORTANT : au premier envoi, FormSubmit t'enverra UN email d'activation
+     sur keyframestudio.contact@gmail.com — clique le lien dedans une seule fois,
+     puis tous les envois arriveront directement dans ta boîte. Teste le formulaire
+     toi-même juste après la mise en ligne. */
+  /* Vignettes vidéo : la vidéo YouTube ne se charge qu'au clic (vignette = ton image du repo) */
+  document.querySelectorAll('.reel-poster').forEach(function(p){
+    function playVideo(){
+      var id = p.getAttribute('data-yt');
+      var iframe = document.createElement('iframe');
+      iframe.src = 'https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0';
+      iframe.title = p.getAttribute('aria-label') || 'Vidéo';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      iframe.allowFullscreen = true;
+      p.innerHTML = '';
+      p.style.backgroundImage = 'none';
+      p.classList.remove('reel-poster');
+      p.appendChild(iframe);
+    }
+    p.addEventListener('click', playVideo);
+    p.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); playVideo(); } });
+  });
+
+  var rushForm = document.getElementById('rushForm');
+  if(rushForm){
+    var rfStatus = document.getElementById('rfStatus');
+    var rfBtn = rushForm.querySelector('.rf-submit');
+    rushForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      if(!rushForm.checkValidity()){ rushForm.reportValidity(); return; }
+      rfBtn.setAttribute('disabled','');
+      rfStatus.className = 'rf-status';
+      rfStatus.textContent = 'Envoi en cours…';
+      var data = new FormData(rushForm);
+      data.append('_subject', 'Nouveau rush — demande de test 15s');
+      data.append('_template', 'table');
+      data.append('_captcha', 'false');
+      fetch('https://formsubmit.co/ajax/keyframestudio.contact@gmail.com', {
+        method:'POST', body:data, headers:{'Accept':'application/json'}
+      }).then(function(r){ return r.json(); }).then(function(res){
+        if(res.success === 'true' || res.success === true){
+          rfStatus.className = 'rf-status ok';
+          rfStatus.textContent = 'Reçu ✓ Tu auras ton diagnostic + test 15s sous 24h.';
+          rushForm.reset();
+        } else { throw new Error(); }
+      }).catch(function(){
+        rfStatus.className = 'rf-status err';
+        rfStatus.textContent = "L'envoi a échoué — utilise le bouton « Par email » juste en dessous.";
+      }).finally(function(){ rfBtn.removeAttribute('disabled'); });
+    });
+  }
+
+  var reveals = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, {threshold:0.12, rootMargin:'0px 0px -40px 0px'});
+    reveals.forEach(function(el){ io.observe(el); });
+  } else { reveals.forEach(function(el){ el.classList.add('in'); }); }
+</script>
+</body>
+</html>
