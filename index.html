@@ -494,10 +494,11 @@
       rfStatus.className = 'rf-status';
       rfStatus.textContent = 'Envoi en cours…';
       var data = new FormData(rushForm);
-      data.append('_subject', 'Nouveau rush — demande de test 15s');
-      data.append('_template', 'table');
-      data.append('_captcha', 'false');
-      fetch('https://formsubmit.co/ajax/keyframestudio.contact@gmail.com', {
+      data.append('access_key', '6571c47a-c571-46ec-ad2a-4c2adbb57d54');
+      data.append('subject', 'Nouveau rush — demande de test 15s');
+      data.append('from_name', 'Site Keyframe Studio');
+      data.append('botcheck', '');
+      fetch('https://api.web3forms.com/submit', {
         method:'POST', body:data, headers:{'Accept':'application/json'}
       }).then(function(r){ return r.json(); }).then(function(res){
         if(res.success === 'true' || res.success === true){
