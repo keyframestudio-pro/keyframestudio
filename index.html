@@ -94,10 +94,6 @@
   .play-btn{position:relative;z-index:1;width:66px;height:66px;border-radius:50%;background:var(--grad);color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 34px -8px var(--accent-glow);transition:transform .35s var(--ease)}
   .play-btn svg{width:26px;height:26px;margin-left:3px}
   .reel-poster:hover .play-btn{transform:scale(1.1)}
-  .fs-close{position:absolute;top:16px;right:16px;z-index:10;display:none;width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.35);background:rgba(0,0,0,.65);color:#fff;font-size:1.3rem;line-height:1;cursor:pointer;align-items:center;justify-content:center}
-  .reel:fullscreen .fs-close{display:flex}
-  .reel:-webkit-full-screen .fs-close{display:flex}
-  .reel:fullscreen iframe{height:calc(100% )}
   .reel-label{display:flex;align-items:center;justify-content:space-between;min-height:50px;padding:14px 18px;font-size:.9rem;color:var(--muted);font-weight:600}
   .reel-label b{color:var(--text);font-weight:700}
   .reel-num{font-family:"Bebas Neue",sans-serif;color:var(--accent);font-weight:400;font-size:1.15rem;letter-spacing:.04em}
@@ -497,23 +493,6 @@
       p.classList.remove('reel-poster');
       p.appendChild(iframe);
 
-      /* Bouton ✕ (visible uniquement pendant le plein écran de lancement) */
-      var closeBtn = document.createElement('button');
-      closeBtn.className = 'fs-close';
-      closeBtn.setAttribute('aria-label', 'Quitter le plein écran');
-      closeBtn.innerHTML = '\u2715';
-      closeBtn.addEventListener('click', function(ev){
-        ev.stopPropagation();
-        var exit = document.exitFullscreen || document.webkitExitFullscreen || document.msExitFullscreen;
-        if(exit){ try{ exit.call(document); }catch(e){} }
-      });
-      p.appendChild(closeBtn);
-
-      /* Plein écran au lancement (autorisé car dans le geste du clic).
-         Ensuite, l'agrandissement passe par le bouton plein écran du lecteur YouTube,
-         qui gère nativement son entrée ET sa sortie. */
-      var fs = p.requestFullscreen || p.webkitRequestFullscreen || p.msRequestFullscreen;
-      if(fs){ try{ fs.call(p); }catch(e){} }
     }
     p.addEventListener('click', playVideo);
     p.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); playVideo(); } });
