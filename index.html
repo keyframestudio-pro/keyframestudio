@@ -469,9 +469,23 @@
      sur keyframestudio.contact@gmail.com — clique le lien dedans une seule fois,
      puis tous les envois arriveront directement dans ta boîte. Teste le formulaire
      toi-même juste après la mise en ligne. */
-  /* Vignettes vidéo : la vidéo YouTube ne se charge qu'au clic (vignette = ton image du repo) */
+  /* Vignettes vidéo — un seul lecteur à la fois, plein écran au lancement */
+  var activePoster = null;
   document.querySelectorAll('.reel-poster').forEach(function(p){
+    p.__origHTML = p.innerHTML;
+    p.__origBg = p.style.backgroundImage;
+
+    function restorePoster(el){
+      el.innerHTML = el.__origHTML;
+      el.style.backgroundImage = el.__origBg;
+      el.classList.add('reel-poster');
+    }
+
     function playVideo(){
+      /* Stoppe et referme l'autre vidéo si elle tourne */
+      if(activePoster && activePoster !== p){ restorePoster(activePoster); }
+      activePoster = p;
+
       var id = p.getAttribute('data-yt');
       var iframe = document.createElement('iframe');
       iframe.src = 'https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0';
@@ -482,7 +496,8 @@
       p.style.backgroundImage = 'none';
       p.classList.remove('reel-poster');
       p.appendChild(iframe);
-      /* Bouton pour quitter le plein écran (Échap fonctionne aussi) */
+
+      /* Bouton ✕ (visible uniquement pendant le plein écran de lancement) */
       var closeBtn = document.createElement('button');
       closeBtn.className = 'fs-close';
       closeBtn.setAttribute('aria-label', 'Quitter le plein écran');
@@ -493,7 +508,10 @@
         if(exit){ try{ exit.call(document); }catch(e){} }
       });
       p.appendChild(closeBtn);
-      /* Passage en plein écran (dans le geste du clic, sinon le navigateur le bloque) */
+
+      /* Plein écran au lancement (autorisé car dans le geste du clic).
+         Ensuite, l'agrandissement passe par le bouton plein écran du lecteur YouTube,
+         qui gère nativement son entrée ET sa sortie. */
       var fs = p.requestFullscreen || p.webkitRequestFullscreen || p.msRequestFullscreen;
       if(fs){ try{ fs.call(p); }catch(e){} }
     }
