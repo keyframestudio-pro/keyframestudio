@@ -478,6 +478,9 @@
       p.style.backgroundImage = 'none';
       p.classList.remove('reel-poster');
       p.appendChild(iframe);
+      /* Passage en plein écran (dans le geste du clic, sinon le navigateur le bloque) */
+      var fs = p.requestFullscreen || p.webkitRequestFullscreen || p.msRequestFullscreen;
+      if(fs){ try{ fs.call(p); }catch(e){} }
     }
     p.addEventListener('click', playVideo);
     p.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); playVideo(); } });
