@@ -23,6 +23,20 @@
     --grad:linear-gradient(100deg,var(--accent),var(--accent-2));
     --radius:18px; --maxw:1180px; --ease:cubic-bezier(.22,.61,.36,1);
   }
+  html[data-theme="light"]{
+    --bg:#F7F7F5; --bg-2:#EFEFEC; --surface:#FFFFFF; --surface-2:#F1F1EE;
+    --line:rgba(0,0,0,.10); --line-strong:rgba(0,0,0,.18);
+    --text:#17171A; --muted:#55555C; --muted-2:#7A7A80;
+    --accent:#0DA6B5; --accent-2:#E22333;
+    --accent-dim:rgba(13,166,181,.12); --accent-glow:rgba(13,166,181,.25);
+  }
+  html[data-theme="light"] body::before{
+    background:radial-gradient(60vw 60vw at 80% -10%, rgba(13,166,181,.10), transparent 60%),radial-gradient(46vw 46vw at -8% 28%, rgba(226,35,51,.05), transparent 60%)}
+  html[data-theme="light"] body::after{opacity:.03}
+  html[data-theme="light"] .btn-primary{color:#fff}
+  #themeToggle{width:42px;height:42px;border-radius:50%;border:1px solid var(--line-strong);background:var(--surface);
+    color:var(--text);cursor:pointer;font-size:1.05rem;display:flex;align-items:center;justify-content:center;transition:transform .3s var(--ease)}
+  #themeToggle:hover{transform:rotate(20deg)}
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
   body{background:var(--bg);color:var(--text);font-family:"DM Sans",sans-serif;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;position:relative}
@@ -226,6 +240,7 @@
         <a href="#contact">Contact</a>
       </nav>
       <div class="nav-cta">
+        <button id="themeToggle" aria-label="Basculer le thème clair / sombre" title="Thème clair / sombre">🌙</button>
         <a href="#contact" class="btn btn-primary">Envoyer un rush</a>
         <button class="menu-btn" id="menuBtn" aria-label="Menu">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
@@ -496,6 +511,21 @@
     }
     p.addEventListener('click', playVideo);
     p.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); playVideo(); } });
+  });
+
+  /* Thème jour / nuit — sombre par défaut, choix mémorisé */
+  var themeBtn = document.getElementById('themeToggle');
+  function applyTheme(t){
+    if(t === 'light'){ document.documentElement.setAttribute('data-theme','light'); themeBtn.textContent = '☀️'; }
+    else { document.documentElement.removeAttribute('data-theme'); themeBtn.textContent = '🌙'; }
+  }
+  var savedTheme = null;
+  try{ savedTheme = localStorage.getItem('kf-theme'); }catch(e){}
+  if(savedTheme){ applyTheme(savedTheme); }
+  themeBtn.addEventListener('click', function(){
+    var next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    applyTheme(next);
+    try{ localStorage.setItem('kf-theme', next); }catch(e){}
   });
 
   var rushForm = document.getElementById('rushForm');
