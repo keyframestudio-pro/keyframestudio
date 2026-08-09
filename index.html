@@ -137,7 +137,7 @@
   .stat .lab{margin-top:10px;color:var(--muted);font-size:.95rem;font-weight:500}
 
   /* AVIS */
-  .avis-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .avis-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
   .avis{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:30px;display:flex;flex-direction:column;gap:18px;transition:transform .4s var(--ease),border-color .4s}
   .avis:hover{transform:translateY(-5px);border-color:var(--line-strong)}
   .stars{color:var(--accent);letter-spacing:3px;font-size:1.05rem}
@@ -368,14 +368,11 @@
           <blockquote>« On lui a confié le montage d'un Reel pour une de nos créatrices : rendu propre, rythmé, exactement dans la DA demandée, et livré sans qu'on ait besoin de repasser derrière. »</blockquote>
           <div class="who"><div class="av">E</div><div class="meta"><b>Evan</b><small>CAO EVAN</small></div></div>
         </div>
-        <!-- 3e AVIS : quand tu le reçois, colle ce bloc avant ce commentaire, adapte texte/initiale/prénom/rôle,
-             et remplace repeat(2,minmax(0,440px)) par repeat(3,1fr) dans la ligne avis-grid ci-dessus :
         <div class="avis reveal">
           <div class="stars">★★★★★</div>
-          <blockquote>« Texte de l'avis. »</blockquote>
-          <div class="who"><div class="av">X</div><div class="meta"><b>Prénom</b><small>Rôle</small></div></div>
+          <blockquote>« Ça fait plusieurs mois qu'on travaille ensemble. Les montages sont propres, les sous-titres précis et les délais toujours respectés. Je peux lui confier mes vidéos sereinement. »</blockquote>
+          <div class="who"><div class="av">W</div><div class="meta"><b>WALI</b><small>Créateur de contenu finance &amp; investissement</small></div></div>
         </div>
-        -->
       </div>
     </div>
   </section>
