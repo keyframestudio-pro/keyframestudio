@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Keyframe Studio — Montage Reels & Shorts pour créateurs Tech, SaaS & IA</title>
-<meta name="description" content="Montage vidéo short-form pour créateurs tech, SaaS et IA. Reels, TikTok, Shorts : de brut à mémorable. Diagnostic + version test 15s gratuit.">
-<meta property="og:title" content="Keyframe Studio — Montage short-form pour créateurs Tech, SaaS & IA">
-<meta property="og:description" content="Reels, Shorts et TikTok qui transforment ton contenu tech en arrêts sur scroll.">
+<title>Keyframe Studio — Montage Reels, Shorts & TikTok</title>
+<meta name="description" content="Montage vidéo short-form pour créateurs, experts et marques. Reels, Shorts, TikTok et clipping : de brut à mémorable. Test 15s offert.">
+<meta property="og:title" content="Keyframe Studio — Montage Reels, Shorts & TikTok">
+<meta property="og:description" content="Reels, Shorts et TikTok qui transforment tes rushs en vidéos mémorables.">
 <meta property="og:type" content="website">
 <link rel="icon" href="https://keyframestudioo.github.io/keyframestudio/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,16 +24,22 @@
     --radius:18px; --maxw:1180px; --ease:cubic-bezier(.22,.61,.36,1);
   }
   html[data-theme="light"]{
-    --bg:#F7F7F5; --bg-2:#EFEFEC; --surface:#FFFFFF; --surface-2:#F1F1EE;
-    --line:rgba(0,0,0,.10); --line-strong:rgba(0,0,0,.18);
-    --text:#17171A; --muted:#55555C; --muted-2:#7A7A80;
-    --accent:#0DA6B5; --accent-2:#E22333;
-    --accent-dim:rgba(13,166,181,.12); --accent-glow:rgba(13,166,181,.25);
+    --bg:#E8EBED; --bg-2:#DDE3E6; --surface:#F4F6F7; --surface-2:#E4EAED;
+    --line:rgba(24,32,37,.12); --line-strong:rgba(24,32,37,.22);
+    --text:#182025; --muted:#49545B; --muted-2:#5F6A72;
+    --accent:#007582; --accent-2:#C52F3D;
+    --accent-dim:rgba(0,117,130,.12); --accent-glow:rgba(0,117,130,.20);
   }
   html[data-theme="light"] body::before{
-    background:radial-gradient(60vw 60vw at 80% -10%, rgba(13,166,181,.10), transparent 60%),radial-gradient(46vw 46vw at -8% 28%, rgba(226,35,51,.05), transparent 60%)}
-  html[data-theme="light"] body::after{opacity:.03}
+    background:radial-gradient(60vw 60vw at 80% -10%, rgba(0,117,130,.06), transparent 60%),radial-gradient(46vw 46vw at -8% 28%, rgba(197,47,61,.03), transparent 60%)}
+  html[data-theme="light"] body::after{opacity:.015}
   html[data-theme="light"] .btn-primary{color:#fff}
+  html[data-theme="light"] header{background:rgba(232,235,237,.88);border-bottom-color:var(--line)}
+  html[data-theme="light"] header.scrolled{background:rgba(232,235,237,.96)}
+  html[data-theme="light"] .nav-links a{color:var(--muted)}
+  html[data-theme="light"] .nav-links a:hover{color:var(--text)}
+  html[data-theme="light"] .rf-field input,html[data-theme="light"] .rf-field textarea{background:rgba(255,255,255,.64)}
+  html[data-theme="light"] .tag.bad{background:rgba(24,32,37,.05)}
   #themeToggle{width:42px;height:42px;border-radius:50%;border:1px solid var(--line-strong);background:var(--surface);
     color:var(--text);cursor:pointer;font-size:1.05rem;display:flex;align-items:center;justify-content:center;transition:transform .3s var(--ease)}
   #themeToggle:hover{transform:rotate(20deg)}
@@ -263,8 +269,8 @@
 
   <div class="marquee">
     <div class="marquee-track">
-      <span>Contenu Tech<i>◆</i></span><span>SaaS<i>◆</i></span><span>Intelligence Artificielle<i>◆</i></span><span>Podcast<i>◆</i></span><span>Startup<i>◆</i></span><span>Dev &amp; No-code<i>◆</i></span><span>Reels &amp; Shorts<i>◆</i></span>
-      <span>Contenu Tech<i>◆</i></span><span>SaaS<i>◆</i></span><span>Intelligence Artificielle<i>◆</i></span><span>Podcast<i>◆</i></span><span>Startup<i>◆</i></span><span>Dev &amp; No-code<i>◆</i></span><span>Reels &amp; Shorts<i>◆</i></span>
+      <span>Facecam<i>◆</i></span><span>Podcasts<i>◆</i></span><span>Interviews<i>◆</i></span><span>Reels &amp; Shorts<i>◆</i></span><span>Clipping<i>◆</i></span><span>Sous-titres<i>◆</i></span><span>Storytelling<i>◆</i></span>
+      <span>Facecam<i>◆</i></span><span>Podcasts<i>◆</i></span><span>Interviews<i>◆</i></span><span>Reels &amp; Shorts<i>◆</i></span><span>Clipping<i>◆</i></span><span>Sous-titres<i>◆</i></span><span>Storytelling<i>◆</i></span>
     </div>
   </div>
 
@@ -400,7 +406,7 @@
           <div class="rf-row">
             <div class="rf-field">
               <label for="rf-name">Ton prénom / chaîne</label>
-              <input id="rf-name" name="Prénom ou chaîne" type="text" placeholder="Ex. Thomas — @tomtech" required>
+              <input id="rf-name" name="Prénom ou chaîne" type="text" placeholder="Ex. Thomas — @toncompte" required>
             </div>
             <div class="rf-field">
               <label for="rf-email">Ton email</label>
@@ -413,7 +419,7 @@
           </div>
           <div class="rf-field">
             <label for="rf-brief">Brief express <span>(objectif, ton souhaité, deadline — 2 lignes suffisent)</span></label>
-            <textarea id="rf-brief" name="Brief" rows="3" placeholder="Ex. Reel pour promouvoir mon SaaS, ton dynamique, deadline souple."></textarea>
+            <textarea id="rf-brief" name="Brief" rows="3" placeholder="Ex. Reel pour promouvoir mon offre, ton dynamique, deadline souple."></textarea>
           </div>
           <button type="submit" class="btn btn-primary rf-submit">Recevoir mon test 15s gratuit
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
@@ -441,7 +447,7 @@
       <div class="foot">
         <div>
           <a href="#top" class="brand"><img src="https://keyframestudioo.github.io/keyframestudio/logo.png" alt="Keyframe Studio"><span>KEYFRAME<b>STUDIO</b></span></a>
-          <p class="foot-tag">Montage short-form pour créateurs Tech, SaaS &amp; IA — France.</p>
+          <p class="foot-tag">Montage short-form pour créateurs, experts &amp; marques — France.</p>
         </div>
         <div class="foot-links">
           <a href="#showreel">Showreel</a><a href="#methode">Méthode</a><a href="#avis">Avis</a><a href="#process">Process</a><a href="#contact">Contact</a>
