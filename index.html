@@ -107,7 +107,7 @@
   .reel-card{position:relative;display:flex;flex-direction:column;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);background:var(--surface);transition:transform .4s var(--ease),border-color .4s}
   .reel-card:hover{transform:translateY(-6px);border-color:var(--line-strong)}
   .reel{position:relative;aspect-ratio:9/16;background:#000;flex:1 1 auto}
-  .reel iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .reel iframe,.reel video{position:absolute;inset:0;width:100%;height:100%;border:0;object-fit:cover;background:#000}
   .reel-poster{background-size:cover;background-position:center;cursor:pointer;display:flex;align-items:center;justify-content:center}
   .reel-poster::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.12);transition:background .3s}
   .reel-poster:hover::after{background:rgba(0,0,0,0)}
@@ -283,21 +283,21 @@
       </div>
       <div class="reel-grid">
         <div class="reel-card reveal">
-          <div class="reel reel-poster" data-yt="AuP3BcmvQsc" style="background-image:url('miniature_showreel.png')" role="button" tabindex="0" aria-label="Lire le showreel">
+          <div class="reel reel-poster" data-src="assets/video/showreel-keyframe-studio.mp4" style="background-image:url('miniature_showreel.png')" role="button" tabindex="0" aria-label="Lire le showreel">
             <span class="play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></span>
           </div>
           <div class="reel-label"><b>Le meilleur de 40+ vidéos</b><span class="reel-num">01</span></div>
         </div>
         <div class="reel-card reveal">
-          <div class="reel reel-poster" data-yt="vc7UJrXhzmA" style="background-image:url('v2.png')" role="button" tabindex="0" aria-label="Lire la vidéo avant / après">
+          <div class="reel reel-poster" data-src="assets/video/comprehensible-sans-son.mp4" style="background-image:url('v2.png')" role="button" tabindex="0" aria-label="Lire la vidéo avant / après">
             <span class="play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></span>
           </div>
           <div class="reel-label"><b>Compréhensible sans le son</b><span class="reel-num">02</span></div>
         </div>
-        <!-- ═══ POUR AJOUTER UNE VIDÉO (au fur et à mesure) : colle ce bloc avant ce commentaire.
-             Remplace TON_ID (ce qui suit youtube.com/shorts/ ou watch?v=), TON_IMAGE.png (vignette 9:16 uploadée dans le repo, à côté d'index.html), le Titre, et incrémente le numéro :
+        <!-- ═══ POUR AJOUTER UNE VIDÉO (au fur et à mesure) : compresse-la pour le web, place-la dans assets/video/, puis colle ce bloc avant ce commentaire.
+             Remplace TON_FICHIER.mp4, TON_IMAGE.png, le Titre, et incrémente le numéro :
              <div class="reel-card reveal">
-               <div class="reel reel-poster" data-yt="TON_ID" style="background-image:url('TON_IMAGE.png')" role="button" tabindex="0" aria-label="Lire la vidéo">
+               <div class="reel reel-poster" data-src="assets/video/TON_FICHIER.mp4" style="background-image:url('TON_IMAGE.png')" role="button" tabindex="0" aria-label="Lire la vidéo">
                  <span class="play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></span>
                </div>
                <div class="reel-label"><b>Titre</b><span class="reel-num">03</span></div>
@@ -498,17 +498,20 @@
       if(activePoster && activePoster !== p){ restorePoster(activePoster); }
       activePoster = p;
 
-      var id = p.getAttribute('data-yt');
-      var iframe = document.createElement('iframe');
-      iframe.src = 'https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0';
-      iframe.title = p.getAttribute('aria-label') || 'Vidéo';
-      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
-      iframe.allowFullscreen = true;
+      if(p.querySelector('video')){ return; }
+      var video = document.createElement('video');
+      video.src = p.getAttribute('data-src');
+      video.title = p.getAttribute('aria-label') || 'Vidéo';
+      video.controls = true;
+      video.autoplay = true;
+      video.playsInline = true;
+      video.preload = 'metadata';
+      video.setAttribute('webkit-playsinline','');
       p.innerHTML = '';
       p.style.backgroundImage = 'none';
       p.classList.remove('reel-poster');
-      p.appendChild(iframe);
-
+      p.appendChild(video);
+      video.play().catch(function(){});
     }
     p.addEventListener('click', playVideo);
     p.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); playVideo(); } });
