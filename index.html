@@ -160,6 +160,15 @@
   .tag.bad{background:rgba(255,255,255,.05);color:var(--muted-2);text-decoration:line-through;text-decoration-color:rgba(255,255,255,.25)}
   .arrow{color:var(--accent-2);font-weight:800}
   .tag.good{background:var(--accent-dim);color:var(--accent)}
+  .ba{display:grid;gap:8px;margin-bottom:22px}
+  .ba-row{display:flex;align-items:baseline;gap:12px;padding:9px 14px;border-radius:12px;font-size:.95rem}
+  .ba-row small{flex:0 0 52px;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+  .ba-row.before{background:rgba(255,255,255,.035);color:var(--muted-2)}
+  .ba-row.before small{color:var(--accent-2)}
+  .ba-row.after{background:var(--accent-dim);color:var(--text);font-weight:700;border:1px solid rgba(45,224,238,.25)}
+  .ba-row.after small{color:var(--accent)}
+  html[data-theme="light"] .ba-row.before{background:rgba(24,32,37,.05)}
+  html[data-theme="light"] .ba-row.after{border-color:rgba(0,117,130,.25)}
   .corr h3{font-size:1.3rem;margin-bottom:10px}
   .corr p{color:var(--muted);font-size:1rem}
 
@@ -205,7 +214,7 @@
   .rf-field input:focus,.rf-field textarea:focus,.rf-field select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-dim)}
   .rf-submit{justify-self:center;margin-top:6px}
   .rf-submit[disabled]{opacity:.6;pointer-events:none}
-  .rf-status{text-align:center;font-size:.95rem;min-height:1.4em;margin:0}
+  .contact .rf-status{text-align:center;font-size:.95rem;min-height:1.4em;margin:0;max-width:none}
   .rf-status.ok{color:#4ade80}
   .rf-status.err{color:var(--accent-2)}
   .rf-alt{margin-top:26px;align-items:center}
@@ -213,9 +222,13 @@
   .rf-field select{appearance:none;-webkit-appearance:none;cursor:pointer;padding-right:40px;background-image:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2714%27 height=%2714%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27%239C9C98%27 stroke-width=%272.5%27%3E%3Cpolyline points=%276 9 12 15 18 9%27/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 15px center}
   .rf-field select option{background:var(--bg-2);color:var(--text)}
   html[data-theme="light"] .rf-field select{background-color:rgba(255,255,255,.64)}
-  .rf-legal{font-size:.82rem;color:var(--muted-2);text-align:center;margin:0}
+  .contact .rf-legal{font-size:.82rem;color:var(--muted-2);text-align:center;margin:0;max-width:none}
   .rf-legal a,.foot-bottom a{text-decoration:underline;text-underline-offset:3px}
-  @media (max-width:680px){.rf-row{grid-template-columns:1fr}}
+  @media (max-width:680px){.rf-row{grid-template-columns:1fr}
+    .rf-alt{flex-direction:column;align-items:stretch;gap:12px;max-width:340px;margin-left:auto;margin-right:auto}
+    .rf-alt .btn{justify-content:center}
+    .rf-alt-label{text-align:center}}
+  .contact .rf-status:empty{min-height:0}
 
   /* FOOTER */
   footer{border-top:1px solid var(--line);padding:54px 0 40px;margin-top:clamp(4rem,9vw,7rem)}
@@ -373,22 +386,22 @@
       </div>
       <div class="corr-grid">
         <div class="corr reveal">
-          <div class="corr-top"><span class="tag bad">Rythme plat</span><span class="arrow">→</span><span class="tag good">Chaque cut a une intention</span></div>
+          <div class="ba"><div class="ba-row before"><small>Avant</small><span>Rythme plat</span></div><div class="ba-row after"><small>Après</small><span>Chaque cut a une intention</span></div></div>
           <h3>Un rythme qui tient</h3>
           <p>Un montage sans rythme perd le spectateur en 2 secondes. Je structure chaque plan pour garder l'attention du début à la fin.</p>
         </div>
         <div class="corr reveal">
-          <div class="corr-top"><span class="tag bad">Son brut</span><span class="arrow">→</span><span class="tag good">Audio propre &amp; calé</span></div>
+          <div class="ba"><div class="ba-row before"><small>Avant</small><span>Son brut</span></div><div class="ba-row after"><small>Après</small><span>Audio propre &amp; calé</span></div></div>
           <h3>Un son net, jamais gênant</h3>
           <p>Nettoyage, niveaux équilibrés et musique synchronisée sur les temps forts. Un audio propre qui sert l'image au lieu de distraire.</p>
         </div>
         <div class="corr reveal">
-          <div class="corr-top"><span class="tag bad">Image plate</span><span class="arrow">→</span><span class="tag good">Couleurs &amp; sous-titres qui claquent</span></div>
+          <div class="ba"><div class="ba-row before"><small>Avant</small><span>Image plate</span></div><div class="ba-row after"><small>Après</small><span>Couleurs &amp; sous-titres qui claquent</span></div></div>
           <h3>Une identité visuelle cohérente</h3>
           <p>Colorimétrie homogène et sous-titres animés lisibles, calés sur ta charte — pas un template générique recyclé.</p>
         </div>
         <div class="corr reveal">
-          <div class="corr-top"><span class="tag bad">Pas de hook</span><span class="arrow">→</span><span class="tag good">3 secondes qui captent</span></div>
+          <div class="ba"><div class="ba-row before"><small>Avant</small><span>Pas de hook</span></div><div class="ba-row after"><small>Après</small><span>3 secondes qui captent</span></div></div>
           <h3>Une accroche qui stoppe le scroll</h3>
           <p>Les algorithmes décident en 3 secondes. Je construis des accroches qui cassent le scroll et gardent le viewer jusqu'au bout.</p>
         </div>
