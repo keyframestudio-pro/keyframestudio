@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Film hommage pour les pompes funèbres — Keyframe Studio</title>
+<meta name="description" content="Un film hommage de 3 à 7 minutes à partir des photos de la famille, prêt pour votre salle de cérémonie. Pour les pompes funèbres.">
+<!-- Page discrète (24/10/2026) : lien donné aux pompes funèbres ; hors du menu, absente du plan du site, non indexée -->
+<meta name="robots" content="noindex">
+<meta property="og:title" content="Film hommage — Keyframe Studio">
+<meta property="og:description" content="Un film de 3 à 7 minutes à partir des photos de la famille, prêt pour votre salle de cérémonie.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<link rel="icon" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  /* Mêmes couleurs que le site ; cette page s'ouvre en clair (plus sobre pour le deuil), le bouton garde le choix sombre */
+  :root{
+    --bg:#0B0B0C; --bg-2:#0F0F11; --surface:#151517; --surface-2:#1B1B1F;
+    --line:rgba(255,255,255,.09); --line-strong:rgba(255,255,255,.16);
+    --text:#F4F4F1; --muted:#9C9C98; --muted-2:#76766F;
+    --accent:#2DE0EE; --accent-dim:rgba(45,224,238,.13); --accent-glow:rgba(45,224,238,.32);
+    --btn-text:#0B0B0C;
+    --radius:18px; --maxw:1080px; --ease:cubic-bezier(.22,.61,.36,1);
+  }
+  html[data-theme="light"]{
+    --bg:#E8EBED; --bg-2:#DDE3E6; --surface:#F4F6F7; --surface-2:#E4EAED;
+    --line:rgba(24,32,37,.12); --line-strong:rgba(24,32,37,.22);
+    --text:#182025; --muted:#49545B; --muted-2:#5F6A72;
+    --accent:#007582; --accent-dim:rgba(0,117,130,.12); --accent-glow:rgba(0,117,130,.20);
+    --btn-text:#fff;
+  }
+  html[data-theme="light"] header{background:rgba(232,235,237,.88)}
+  html[data-theme="light"] header.scrolled{background:rgba(232,235,237,.96);border-bottom-color:var(--line)}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:"DM Sans",sans-serif;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .container{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  h1,h2{font-family:"Bebas Neue",sans-serif;font-weight:400;line-height:.95;letter-spacing:.01em}
+  h3{font-family:"DM Sans",sans-serif;font-weight:700;line-height:1.2;letter-spacing:-.01em}
+  .eyebrow{font-size:.84rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);display:inline-block}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:"DM Sans",sans-serif;font-weight:700;font-size:1rem;padding:15px 26px;border-radius:999px;cursor:pointer;border:1px solid transparent;transition:transform .35s var(--ease),border-color .3s,color .3s,background .3s}
+  .btn svg{width:17px;height:17px;flex:0 0 auto}
+  .btn-plein{background:var(--accent);color:var(--btn-text)}
+  .btn-plein:hover{transform:translateY(-2px);box-shadow:0 12px 32px -14px var(--accent-glow)}
+  .btn-ghost{background:transparent;color:var(--text);border-color:var(--line-strong)}
+  .btn-ghost:hover{transform:translateY(-2px);border-color:var(--accent);color:var(--accent)}
+
+  /* EN-TÊTE : le logo et le thème, pas de menu (page à part) */
+  header{position:sticky;top:0;z-index:50;backdrop-filter:saturate(140%) blur(14px);background:rgba(11,11,12,.6);border-bottom:1px solid transparent;transition:border-color .3s,background .3s}
+  header.scrolled{border-bottom-color:var(--line);background:rgba(11,11,12,.82)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:74px}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:700;letter-spacing:.02em;font-size:1.05rem}
+  .brand img{width:30px;height:30px;border-radius:7px}
+  .brand span b{color:var(--accent)}
+  .nav-cta{display:flex;align-items:center;gap:14px}
+  .nav-cta .btn{padding:11px 20px;font-size:.95rem}
+  #themeToggle{width:42px;height:42px;border-radius:50%;border:1px solid var(--line-strong);background:var(--surface);color:var(--text);cursor:pointer;font-size:1.05rem;display:flex;align-items:center;justify-content:center}
+
+  /* INTRO */
+  .hero{padding:clamp(4rem,10vw,7rem) 0 clamp(3rem,6vw,4.5rem);text-align:center}
+  .hero h1{font-size:clamp(3.4rem,11vw,6.4rem);margin-top:22px}
+  .hero .sous-titre{font-size:clamp(1.25rem,3vw,1.7rem);color:var(--muted);font-weight:500;margin-top:10px}
+  .hero p.lead{margin:24px auto 0;font-size:clamp(1.05rem,2.2vw,1.2rem);color:var(--muted);max-width:46ch}
+  .hero-actions{margin-top:34px;display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+
+  section.block{padding:clamp(3.5rem,8vw,6rem) 0}
+  section.alt{background:var(--bg-2)}
+  .sec-head{max-width:60ch;margin:0 auto clamp(2.2rem,5vw,3.2rem);text-align:center}
+  .sec-head h2{font-size:clamp(2.3rem,5.5vw,3.6rem);margin-top:14px}
+  .sec-head p.sub{margin:14px auto 0;color:var(--muted);font-size:1.05rem;max-width:52ch}
+
+  /* CE QUE REÇOIT LA FAMILLE */
+  .recu-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;max-width:900px;margin:0 auto}
+  .recu{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px 24px}
+  /* le cœur du film : en tête, sur toute la largeur */
+  .recu-une{grid-column:1 / -1;display:flex;gap:20px;align-items:flex-start;border:1.5px solid var(--accent);padding:30px 28px}
+  .recu-une .recu-ico{margin-bottom:0;flex:0 0 auto;width:50px;height:50px}
+  .recu-une .recu-ico svg{width:25px;height:25px}
+  .recu-une h3{font-size:1.3rem}
+  .recu-ico{width:42px;height:42px;border-radius:12px;background:var(--accent-dim);color:var(--accent);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+  .recu-ico svg{width:21px;height:21px}
+  .recu h3{font-size:1.1rem;margin-bottom:8px}
+  .recu p{color:var(--muted);font-size:.98rem}
+
+  /* ÉTAPES */
+  .etapes{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .etape{padding-top:24px;border-top:2px solid var(--line)}
+  .etape .num{font-family:"Bebas Neue",sans-serif;font-size:3rem;line-height:1;color:var(--accent)}
+  .etape h3{font-size:1.2rem;margin:12px 0 10px}
+  .etape p{color:var(--muted);font-size:1rem}
+
+  /* EXTRAIT DU FILM (16:9) */
+  .extrait{max-width:860px;margin:0 auto}
+  .extrait video,.extrait-attente{display:block;width:100%;height:auto;aspect-ratio:16/9;border-radius:14px;background:#000;box-shadow:0 24px 60px -30px rgba(0,0,0,.45)}
+  .extrait-attente{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:var(--surface);border:1.5px dashed var(--line-strong);box-shadow:none;color:var(--muted-2);font-weight:600}
+  .extrait-attente svg{width:52px;height:52px}
+  .extrait figcaption{margin-top:14px;color:var(--muted);font-size:.9rem;text-align:center;line-height:1.5}
+
+  /* FILM D'EXEMPLE + ENGAGEMENTS */
+  .deux{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:stretch}
+  .carte{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:30px 28px;display:flex;flex-direction:column}
+  .carte h3{font-size:1.25rem;margin-bottom:12px}
+  .carte p{color:var(--muted);font-size:1rem}
+  .carte p + p{margin-top:10px}
+  .carte .btn{margin-top:22px;align-self:flex-start}
+  .carte ul{list-style:none;display:grid;gap:12px;color:var(--muted);font-size:1rem}
+  .carte li{position:relative;padding-left:28px}
+  .carte li::before{content:"✓";position:absolute;left:0;top:2px;width:19px;height:19px;border-radius:50%;background:var(--accent-dim);color:var(--accent);font-size:.7rem;font-weight:800;display:flex;align-items:center;justify-content:center}
+  .carte li b{color:var(--text);font-weight:600}
+
+  /* CONTACT */
+  .contact{border:1px solid var(--line);border-radius:26px;background:var(--surface);padding:clamp(2.5rem,6vw,4rem) clamp(1.4rem,5vw,3.5rem);text-align:center}
+  .contact h2{font-size:clamp(2.2rem,5.5vw,3.4rem);margin-top:14px}
+  .contact p.sub{color:var(--muted);max-width:46ch;margin:14px auto 0;font-size:1.05rem}
+  .contact-actions{margin-top:28px;display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+  .about{display:flex;gap:20px;align-items:center;max-width:640px;margin:34px auto 0;text-align:left;border-top:1px solid var(--line);padding-top:28px}
+  .about img{width:84px;height:84px;border-radius:50%;flex:0 0 auto;border:2px solid var(--line-strong)}
+  .about p{color:var(--muted);font-size:.98rem}
+  .about p b{color:var(--text)}
+
+  /* PIED DE PAGE (le même que le site) */
+  footer{border-top:1px solid var(--line);padding:54px 0 40px;margin-top:clamp(3.5rem,8vw,6rem)}
+  .foot{display:flex;flex-wrap:wrap;gap:28px;justify-content:space-between;align-items:flex-start}
+  .foot .brand img{width:34px;height:34px}
+  .foot-tag{color:var(--muted-2);font-size:.92rem;margin-top:14px;max-width:34ch}
+  .foot-links{display:flex;flex-direction:column;gap:11px}
+  .foot-links a{color:var(--muted);font-size:.95rem;transition:color .25s}
+  .foot-links a:hover{color:var(--accent)}
+  .foot-bottom{margin-top:42px;padding-top:24px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;color:var(--muted-2);font-size:.85rem}
+  .foot-bottom a{text-decoration:underline;text-underline-offset:3px}
+
+  @media (max-width:900px){
+    .recu-grid{grid-template-columns:repeat(2,1fr)}
+  }
+  @media (max-width:680px){
+    body{font-size:16px}
+    .container{padding:0 16px}
+    .nav-cta .btn{display:none}
+    .recu-grid,.etapes,.deux{grid-template-columns:1fr}
+    .recu-une{flex-direction:column;gap:16px;padding:26px 24px}
+    .hero-actions .btn,.contact-actions .btn{width:100%;max-width:340px}
+    .carte .btn{align-self:stretch}
+    .about{flex-direction:column;text-align:center}
+  }
+</style>
+</head>
+<body>
+
+  <header id="top">
+    <div class="container nav">
+      <a href="index.html" class="brand">
+        <img src="logo.png" alt="Keyframe Studio">
+        <span>KEYFRAME<b>STUDIO</b></span>
+      </a>
+      <div class="nav-cta">
+        <button id="themeToggle" aria-label="Basculer le thème clair / sombre" title="Thème clair / sombre">☀️</button>
+        <a href="#contact" class="btn btn-ghost">Me contacter</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+  <section class="hero">
+    <div class="container">
+      <span class="eyebrow">Pour les pompes funèbres</span>
+      <h1>Film hommage</h1>
+      <p class="sous-titre">à partir des photos de la famille</p>
+      <p class="lead">Un film de 3 à 7 minutes, sobre et soigné, prêt pour votre salle de cérémonie. Vous le proposez aux familles comme votre propre prestation.</p>
+      <div class="hero-actions">
+        <a href="#exemple" class="btn btn-plein">Recevoir le film d'exemple</a>
+        <a href="#extrait" class="btn btn-ghost">Voir un extrait</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block alt" id="film">
+    <div class="container">
+      <div class="sec-head">
+        <span class="eyebrow">Le film</span>
+        <h2>Ce que reçoit la famille</h2>
+      </div>
+      <div class="recu-grid">
+        <div class="recu recu-une">
+          <div class="recu-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><polygon points="10 9 15 12 10 15 10 9"/></svg></div>
+          <div>
+            <h3>Des photos qui prennent vie</h3>
+            <p>Les visages ne sont jamais retouchés ; seules quelques photos choisies prennent vie, chacune vérifiée.</p>
+          </div>
+        </div>
+        <div class="recu">
+          <div class="recu-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5V5a2 2 0 0 1 2-2h14v16H6a2 2 0 0 0-2 2z"/><path d="M8 7h8M8 11h6"/></svg></div>
+          <h3>Une vie racontée dans l'ordre</h3>
+          <p>De l'enfance à aujourd'hui, en quelques chapitres. Les prénoms, les dates et les mots sont ceux de la famille.</p>
+        </div>
+        <div class="recu">
+          <div class="recu-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 14"/></svg></div>
+          <h3>Un film de 3 à 7 minutes</h3>
+          <p>Selon le nombre de photos. Un fichier vidéo prêt pour l'écran de votre salle, que la famille peut garder.</p>
+        </div>
+        <div class="recu">
+          <div class="recu-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+          <h3>Des photos anciennes nettoyées</h3>
+          <p>Poussières, rayures et netteté ; certaines photos en noir et blanc retrouvent des couleurs.</p>
+        </div>
+        <div class="recu">
+          <div class="recu-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
+          <h3>Une musique douce et un mot de la fin</h3>
+          <p>Une musique douce, sous licence pour cet usage. À la fin, le message de la famille, écrit à la main.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="etapes">
+    <div class="container">
+      <div class="sec-head">
+        <span class="eyebrow">Étape par étape</span>
+        <h2>Comment ça se passe</h2>
+      </div>
+      <div class="etapes">
+        <div class="etape"><div class="num">01</div><h3>Vous me transmettez les photos</h3><p>Jusqu'à 100 photos, par un simple lien, avec le prénom, les dates et, si la famille le souhaite, quelques mots.</p></div>
+        <div class="etape"><div class="num">02</div><h3>Je réalise le film en 24 à 48&nbsp;h</h3><p>Je prépare chaque film moi-même et je le relis entièrement. Vous le recevez avant la famille et vous le validez.</p></div>
+        <div class="etape"><div class="num">03</div><h3>Vous le remettez à la famille</h3><p>Prêt pour la cérémonie, sur l'écran de votre salle, et à garder ensuite.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block alt" id="extrait">
+    <div class="container">
+      <div class="sec-head">
+        <span class="eyebrow">Extrait du film</span>
+        <h2>Une minute d'un film hommage</h2>
+      </div>
+      <figure class="extrait">
+        <!-- Extrait validé par Mustafa le 24/10/2026 (session « Extrait public du film hommage ») ;
+             sources des 13 photos : P:\MONTAGE VIDEO\FILMS SOUVENIR\4_LANCEMENT\EXTRAIT_PUBLIC_SITE\1_PHOTOS_DOMAINE_PUBLIC\SOURCES.md -->
+        <video controls playsinline preload="none" poster="assets/img/film-hommage-extrait.jpg" src="assets/video/film-hommage-extrait.mp4" width="1920" height="1080" title="Extrait d'un film hommage"></video>
+        <figcaption>Exemple réalisé avec des photos du domaine public (1903-1930 : Rijksmuseum, Archives de Nimègue, Bibliothèque de Mazovie) · photos animées et mises en couleur par intelligence artificielle · voix de synthèse</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="block" id="exemple">
+    <div class="container">
+      <div class="deux">
+        <div class="carte">
+          <span class="eyebrow">Film d'exemple</span>
+          <h3 style="margin-top:12px">Envoyé en lien privé, sur demande</h3>
+          <p>Le film d'exemple a été réalisé avec de vraies photos d'archives ; les prénoms et les dates y sont inventés. C'est pourquoi il n'est pas publié sur ce site.</p>
+          <p>Demandez-le : je vous l'envoie par un lien privé.</p>
+          <a class="btn btn-plein" href="mailto:contact@keyframestudio.fr?subject=Film%20hommage%20%3A%20film%20d%27exemple&body=Bonjour%2C%0A%0APouvez-vous%20m%27envoyer%20le%20film%20d%27exemple%20%3F%0A%0APompe%20fun%C3%A8bre%20%3A%0A">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="3 7 12 13 21 7"/></svg>
+            Demander le film d'exemple
+          </a>
+        </div>
+        <div class="carte">
+          <span class="eyebrow">Mes engagements</span>
+          <h3 style="margin-top:12px">Les familles restent les vôtres</h3>
+          <ul>
+            <li>Les photos servent <b>uniquement au film</b> ; elles sont <b>effacées 30 jours</b> après la livraison.</li>
+            <li>Les familles que vous accompagnez restent les vôtres : <b>je ne les contacte jamais</b>.</li>
+            <li>Je vous facture un <b>prix professionnel</b>, communiqué sur demande ; vous proposez le film aux familles <b>au prix que vous fixez</b>. Sans engagement, sans minimum de commande.</li>
+            <li>Le nettoyage et l'animation des photos utilisent l'intelligence artificielle ; c'est <b>indiqué discrètement à la fin du film</b>.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="contact" style="padding-top:0;padding-bottom:0">
+    <div class="container">
+      <div class="contact">
+        <span class="eyebrow">Contact</span>
+        <h2>Une question ? Une première famille ?</h2>
+        <p class="sub">Écrivez-moi, je vous réponds sous 24&nbsp;h.</p>
+        <div class="contact-actions">
+          <a class="btn btn-plein" href="mailto:contact@keyframestudio.fr?subject=Film%20hommage">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="3 7 12 13 21 7"/></svg>
+            contact@keyframestudio.fr
+          </a>
+        </div>
+        <div class="about">
+          <img src="assets/img/mustafa.jpg" alt="Mustafa, en illustration" width="84" height="84">
+          <p><b>Mustafa Yildiz, monteur vidéo à Agen (Keyframe Studio).</b> Plus de 100 vidéos montées pour des professionnels. Je prépare chaque film moi-même et je le relis entièrement avant de vous l'envoyer.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="foot">
+        <div>
+          <a href="index.html" class="brand"><img src="logo.png" alt="Keyframe Studio"><span>KEYFRAME<b>STUDIO</b></span></a>
+          <p class="foot-tag">Montage short-form et pubs vidéo pour créateurs, experts &amp; marques — France.</p>
+        </div>
+        <div class="foot-links">
+          <a href="index.html#showreel">Showreel</a><a href="index.html#formules">Formules</a><a href="index.html#methode">Méthode</a><a href="index.html#avis">Avis</a><a href="index.html#process">Process</a><a href="index.html#contact">Contact</a>
+        </div>
+        <div class="foot-links">
+          <a href="mailto:contact@keyframestudio.fr">contact@keyframestudio.fr</a>
+          <a href="https://www.instagram.com/keyframestudio_pro/" target="_blank" rel="noopener">@keyframestudio_pro</a>
+        </div>
+      </div>
+      <div class="foot-bottom"><span>© 2026 Keyframe Studio. Tous droits réservés.</span><span><a href="mentions-legales.html">Mentions légales</a> · <a href="confidentialite.html">Confidentialité</a></span><span>Reels · Shorts · TikTok · Pubs</span></div>
+    </div>
+  </footer>
+
+<script>
+  var header = document.getElementById('top');
+  window.addEventListener('scroll', function(){
+    if(window.scrollY > 10){ header.classList.add('scrolled'); } else { header.classList.remove('scrolled'); }
+  }, {passive:true});
+
+  /* Thème : clair par défaut sur cette page ; même choix mémorisé que le site */
+  var themeBtn = document.getElementById('themeToggle');
+  function applyTheme(t){
+    if(t === 'dark'){ document.documentElement.removeAttribute('data-theme'); themeBtn.textContent = '🌙'; }
+    else { document.documentElement.setAttribute('data-theme','light'); themeBtn.textContent = '☀️'; }
+  }
+  var savedTheme = null;
+  try{ savedTheme = localStorage.getItem('kf-theme'); }catch(e){}
+  if(savedTheme){ applyTheme(savedTheme); }
+  themeBtn.addEventListener('click', function(){
+    var next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    applyTheme(next);
+    try{ localStorage.setItem('kf-theme', next); }catch(e){}
+  });
+</script>
+</body>
+</html>
